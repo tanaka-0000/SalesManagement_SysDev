@@ -31,13 +31,15 @@
             this.btn_CleateDabase = new System.Windows.Forms.Button();
             this.Lbl_tag = new System.Windows.Forms.Label();
             this.btn_InsertSampleData = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_CleateDabase
             // 
-            this.btn_CleateDabase.Location = new System.Drawing.Point(661, 319);
+            this.btn_CleateDabase.Location = new System.Drawing.Point(1102, 478);
+            this.btn_CleateDabase.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btn_CleateDabase.Name = "btn_CleateDabase";
-            this.btn_CleateDabase.Size = new System.Drawing.Size(106, 49);
+            this.btn_CleateDabase.Size = new System.Drawing.Size(177, 74);
             this.btn_CleateDabase.TabIndex = 0;
             this.btn_CleateDabase.Text = "データベース生成";
             this.btn_CleateDabase.UseVisualStyleBackColor = true;
@@ -46,30 +48,43 @@
             // Lbl_tag
             // 
             this.Lbl_tag.AutoSize = true;
-            this.Lbl_tag.Location = new System.Drawing.Point(266, 161);
+            this.Lbl_tag.Location = new System.Drawing.Point(443, 242);
+            this.Lbl_tag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Lbl_tag.Name = "Lbl_tag";
-            this.Lbl_tag.Size = new System.Drawing.Size(224, 12);
+            this.Lbl_tag.Size = new System.Drawing.Size(335, 18);
             this.Lbl_tag.TabIndex = 1;
             this.Lbl_tag.Text = "このページはログイン画面として作成してください";
             // 
             // btn_InsertSampleData
             // 
-            this.btn_InsertSampleData.Location = new System.Drawing.Point(661, 389);
+            this.btn_InsertSampleData.Location = new System.Drawing.Point(1102, 584);
+            this.btn_InsertSampleData.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btn_InsertSampleData.Name = "btn_InsertSampleData";
-            this.btn_InsertSampleData.Size = new System.Drawing.Size(106, 49);
+            this.btn_InsertSampleData.Size = new System.Drawing.Size(177, 74);
             this.btn_InsertSampleData.TabIndex = 0;
             this.btn_InsertSampleData.Text = "サンプルデータ登録";
             this.btn_InsertSampleData.UseVisualStyleBackColor = true;
             this.btn_InsertSampleData.Click += new System.EventHandler(this.btn_InsertSampleData_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(248, 161);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
             // F_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Lbl_tag);
             this.Controls.Add(this.btn_InsertSampleData);
             this.Controls.Add(this.btn_CleateDabase);
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "F_Login";
             this.Text = "販売管理システムログイン画面";
             this.ResumeLayout(false);
@@ -82,6 +97,7 @@
         private System.Windows.Forms.Button btn_CleateDabase;
         private System.Windows.Forms.Label Lbl_tag;
         private System.Windows.Forms.Button btn_InsertSampleData;
+        private System.Windows.Forms.Label label1;
     }
 }
 
