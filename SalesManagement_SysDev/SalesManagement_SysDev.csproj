@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeDataAccess.cs" />
     <Compile Include="Entity\M_MajorClassification.cs" />
     <Compile Include="Entity\M_Product.cs" />
     <Compile Include="F_login.cs">
@@ -71,6 +72,13 @@
     <Compile Include="Entity\M_Position.cs" />
     <Compile Include="Entity\M_SalesOffice.cs" />
     <Compile Include="Entity\M_SmallClassification.cs" />
+    <Compile Include="loginTouroku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loginTouroku.Designer.cs">
+      <DependentUpon>loginTouroku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="passwordHash.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\T_Arrival.cs" />
@@ -93,8 +101,17 @@
     <Compile Include="Entity\T_Warehousing.cs" />
     <Compile Include="Entity\T_WarehousingDetail.cs" />
     <Compile Include="SalesManagement_DevContext.cs" />
+    <Compile Include="Sales_management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales_management.Designer.cs">
+      <DependentUpon>Sales_management.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="F_login.resx">
       <DependentUpon>F_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loginTouroku.resx">
+      <DependentUpon>loginTouroku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +123,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Sales_management.resx">
+      <DependentUpon>Sales_management.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
