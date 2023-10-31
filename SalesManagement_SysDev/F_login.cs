@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,14 @@ namespace SalesManagement_SysDev
 {
     public partial class F_Login : Form
     {
+        //パスワードハッシュ用クラスのインスタンス化
+        passwordHash passwordHash = new passwordHash();
+
+        //他のフォームから変数の内容を共有できるように宣言
+        internal static string loginID = "";
+        internal static string loginPass = "";
+
+
         public F_Login()
         {
             InitializeComponent();
@@ -733,6 +743,101 @@ namespace SalesManagement_SysDev
             context.Dispose();
 
             MessageBox.Show("サンプルデータ登録完了");
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            string loginID = textBoxEmployeeID.Text;
+            string loginPass = textBoxPassword.Text;
+            bool flg;
+
+
+            if (loginID.Trim() == "" || loginID == null || loginPass.Trim() == "" || loginPass == null)
+            {
+                //ID・PW未入力メッセージ
+                MessageBox.Show("IDまたは、パスワードを入力してください。");
+                return;
+            }
+            try
+            {
+                var pw = passwordHash.CreatePasswordHash(textBoxPassword.Text.Trim());
+
+                int loginIDs = int.Parse(textBoxEmployeeID.Text.Trim());
+
+                //ユーザID・PWチェック
+                var context = new SalesManagement_DevContext();
+                //ユーザID・PWが存在するか
+                flg = context.M_Employees.Any(x => x.EmID == loginIDs && x.EmPassword == loginPass);
+                if (flg == true)
+                {
+                    //SQL文
+                    //「M_Employees」テーブル参照
+                    //社員ID・パスワードを部分一致
+                    //部分一致が未入力の場合、全件表示
+
+                    var tb = from t1 in context.M_Employees
+                             from t2 in context.M_Employees
+                             where t1.EmID == loginIDs && t2.EmPassword == pw
+                             select new
+                             {
+                                 t1.EmID,
+                                 t2.EmPassword,
+
+                             };
+                    foreach (var p in tb)
+                    {
+                        F_Login.loginID = loginID.ToString();
+                        F_Login.loginPass = p.EmPassword;
+
+                    }
+
+                    context.Dispose();
+                    this.Close();
+
+                }
+                else
+                {
+                    //ID・PW不一致メッセージ
+                    MessageBox.Show("IDまたは、パスワードを違います。");
+                    return;
+                }
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)//登録ボタン
+        {
+            //loginTourokuのインスタンスを生成
+            loginTouroku loginTouroku = new loginTouroku();
+            //loginTourokuを表示
+            loginTouroku.Show();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+            //textBoxPassword.Textに入力された文字を「*」で表示されるようにする
+            textBoxPassword.PasswordChar = '*';
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Sales_management　sales_Management = new Sales_management();
+            sales_Management.Show();
+        }
+
+        private void F_Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
